@@ -15,7 +15,7 @@ export default function about() {
           }}
         >
           <h2 className="text-center mb-4" style={{ color: '#333' }}>
-            About
+          Service
           </h2>
           <img
             src="/img/544.jpg"

@@ -27,6 +27,35 @@ export default function Page() {
   return () => clearInterval(interval);
 }, []);
 
+const handleDelete = async (id) => {
+  // Ask the user for confirmation
+  const confirmed = window.confirm('Are you sure you want to delete this user?');
+  
+  if (!confirmed) {
+    return; // Exit the function if the user cancels
+  }
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to delete user');
+    }
+
+    const result = await res.json();
+    console.log(result);
+
+    // Optionally, update the state to remove the deleted item from the list
+    setItems(items.filter(item => item.id !== id));
+  } catch (error) {
+    console.error('Error deleting data:', error);
+  }
+};
 
   return (
     <>
@@ -56,7 +85,7 @@ export default function Page() {
               <td>{item.firstname}</td>
               <td>{item.lastname}</td>
               <td><Link href={`/users/edit/${item.id}`} className="btn btn-warning">Edit</Link></td>
-              <td><Link href={`/users/del/${item.id}`} className="btn btn-danger">Del</Link></td>
+              <td><button  className="btn btn-danger" type='button' onClick={() =>handleDelete(item.id)}>Del</button></td>
             </tr>
           ))}
         </tbody>
