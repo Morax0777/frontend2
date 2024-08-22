@@ -1,95 +1,76 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
+import Navbar from './component/nav1';
+import Footer from '../app/Footter/footter';
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <Navbar />
+
+      <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/img/1.png" class="d-block w-100" alt="..."></img>
+        </div>
+        <div class="carousel-item">
+          <img src="/img/1.png" class="d-block w-100" alt="..."></img>
+        </div>
+      </div>
+          
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+        <br />
+        <br />
+      </div>
+      
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-md-4">
+            <div className="card mb-3">
+              <img src="/img/11.jpg" className="card-img-top custom-img" alt="Card Image" />
+              <div className="card-body text-center">
+                <h5 className="card-title">Furina</h5>
+                <p className="card-text">
+                ตัวละครระดับ 5 ดาว
+                </p>
+                <a href="#" className="btn btn-primary">Button</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-4">
+            <div className="card mb-3">
+              <img src="/img/11.jpg" className="custom-img" alt="Card Image" />
+              <div className="card-body text-center">
+                <h5 className="card-title">Furina</h5>
+                <p className="card-text">
+                ตัวละครระดับ 5 ดาว
+                </p>
+                <a href="#" className="btn btn-primary">Button</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-4">
+            <div className="card mb-3">
+              <img src="/img/11.jpg" className="card-img-top custom-img" alt="Card Image" />
+              <div className="card-body text-center">
+                <h5 className="card-title">Furina</h5>
+                <p className="card-text">
+                ตัวละครระดับ 5 ดาว
+                </p>
+                <a href="#" className="btn btn-primary">Button</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <Footer />
+    </>
   );
 }
