@@ -3,9 +3,30 @@ import Link from 'next/link'
 import Navbar from '/app/component/nav';
 import Footer from '/app/Footter/footter';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'; // For redirectiony
 
 export default function Page() {
   const [items, setItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [loading, setLoading] = useState(true); // State to handle loading
+  const router = useRouter(); // Hook for navigation
+
+  useEffect(() => {
+    async function checkAuthentication() {
+      // Check login status by looking for token in local storage
+      const token = localStorage.getItem('token');
+      if (token) {
+        setIsLoggedIn(true);
+        setLoading(false);
+      } else {
+        setIsLoggedIn(false);
+        setLoading(false);
+        router.push('/login'); // Redirect to signup page if not authenticated
+      }
+    }
+
+    checkAuthentication();
+  }, [router]);
 
   useEffect(() => {
     async function getUsers() {
@@ -29,7 +50,7 @@ export default function Page() {
 
 const handleDelete = async (id) => {
   // Ask the user for confirmation
-  const confirmed = window.confirm('Are you sure you want to delete this user?');
+  const confirmed = window.confirm('คุณต้องการลบหรือไม่?');
   
   if (!confirmed) {
     return; // Exit the function if the user cancels
