@@ -1,7 +1,25 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Nav.module.css';
 
 export default function Nav() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // ตรวจสอบสถานะล็อกอินจาก localStorage
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    // ทำการออกจากระบบที่นี่
+    localStorage.removeItem('token'); // ลบ token จาก localStorage
+    setIsLoggedIn(false); // เปลี่ยนสถานะใน state
+    window.location.href = '/login'; // เปลี่ยนเส้นทางไปที่หน้า login
+  };
+
   return (
     <>
       <header className="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
@@ -50,12 +68,20 @@ export default function Nav() {
                     </li>
                   </ul>
                   <div className="d-flex ms-md-3">
-                    <Link href="/login" className="btn btn-outline-primary me-2">
-                      Login
-                    </Link>
-                    <Link href="/signup" className="btn btn-primary">
-                      Sign-up
-                    </Link>
+                    {!isLoggedIn ? (
+                      <>
+                        <Link href="/login" className="btn btn-outline-primary me-2">
+                          Login
+                        </Link>
+                        <Link href="/signup" className="btn btn-primary">
+                          Sign-up
+                        </Link>
+                      </>
+                    ) : (
+                      <button onClick={handleLogout} className="btn btn-danger">
+                        Logout
+                      </button>
+                    )}
                   </div>
                 </div>
               </nav>

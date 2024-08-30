@@ -31,9 +31,9 @@ export default function Page() {
         localStorage.setItem('user', JSON.stringify({ username })); // บันทึกรายละเอียดผู้ใช้
         setMessage('Login successful!');
   
-        // เปลี่ยนไปยังหน้า http://localhost:3001/ หลังจากล็อกอินสำเร็จ โดยไม่ต้องยืนยัน
+        // เปลี่ยนไปยังหน้า /login/user หลังจากล็อกอินสำเร็จ
         setTimeout(() => {
-          window.location.href = 'http://localhost:3001/';
+          window.location.href = 'http://localhost:3001';
         }, 1000); // รอ 1 วินาทีก่อนเปลี่ยนหน้า
       } else {
         setMessage(result.error);
@@ -43,25 +43,23 @@ export default function Page() {
       setMessage('An error occurred during login.');
     }
   };
-  
 
   return (
     <>
       <Navbar />
-      <br /><br /><br /><br /><br />
-      <div className="container">
-        <div className="card">
-          <div className="card-header bg-success text-white">
-            Login Form
+      <div className="d-flex align-items-center justify-content-center min-vh-100">
+        <div className="card shadow-lg" style={{ maxWidth: '500px', width: '100%' }}>
+          <div className="card-header bg-success text-white text-center">
+            <h4>Login Form</h4>
           </div>
-          <div className="card-body">
+          <div className="card-body p-4">
             {message && (
               <div className="alert alert-info" role="alert">
                 {message}
               </div>
             )}
-            <form className="row g-3" onSubmit={handleLogin}>
-              <div className="col-md-6">
+            <form onSubmit={handleLogin}>
+              <div className="mb-3">
                 <label htmlFor="username" className="form-label">Username</label>
                 <div className="input-group">
                   <span className="input-group-text" id="basic-addon1">
@@ -77,7 +75,7 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="mb-4">
                 <label htmlFor="password" className="form-label">Password</label>
                 <div className="input-group">
                   <span className="input-group-text" id="basic-addon2">
@@ -93,7 +91,7 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <div className="col-12">
+              <div className="d-grid">
                 <button type="submit" className="btn btn-success">
                   <i className="bi bi-box-arrow-in-right"></i> Login
                 </button>
@@ -102,7 +100,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <Footer />
     </>
   );
