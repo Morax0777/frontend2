@@ -6,17 +6,25 @@ import styles from './Nav.module.css';
 
 export default function Nav() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState(''); // เพิ่ม state สำหรับชื่อผู้ใช้
 
   useEffect(() => {
     // ตรวจสอบสถานะล็อกอินจาก localStorage
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
+    if (token) {
+      setIsLoggedIn(true);
+      // ดึงชื่อผู้ใช้จาก localStorage (หรือจาก API ที่เกี่ยวข้อง)
+      const storedUsername = localStorage.getItem('username');
+      setUsername(storedUsername || 'User');
+    }
   }, []);
 
   const handleLogout = () => {
     // ทำการออกจากระบบที่นี่
     localStorage.removeItem('token'); // ลบ token จาก localStorage
+    localStorage.removeItem('username'); // ลบ username จาก localStorage
     setIsLoggedIn(false); // เปลี่ยนสถานะใน state
+    setUsername(''); // รีเซ็ตชื่อผู้ใช้
     window.location.href = '/login'; // เปลี่ยนเส้นทางไปที่หน้า login
   };
 
@@ -67,8 +75,15 @@ export default function Nav() {
                       </Link>
                     </li>
                   </ul>
-                  <div className="d-flex ms-md-3">
-                    {!isLoggedIn ? (
+                  <div className="d-flex ms-md-3 align-items-center">
+                    {isLoggedIn ? (
+                      <>
+                        <span className="me-3">Welcome, {username}!</span> {/* เพิ่มข้อความต้อนรับ */}
+                        <button onClick={handleLogout} className="btn btn-danger">
+                          Logout
+                        </button>
+                      </>
+                    ) : (
                       <>
                         <Link href="/login" className="btn btn-outline-primary me-2">
                           Login
@@ -77,10 +92,6 @@ export default function Nav() {
                           Sign-up
                         </Link>
                       </>
-                    ) : (
-                      <button onClick={handleLogout} className="btn btn-danger">
-                        Logout
-                      </button>
                     )}
                   </div>
                 </div>
