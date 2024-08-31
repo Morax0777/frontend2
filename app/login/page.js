@@ -15,7 +15,7 @@ export default function Page() {
     e.preventDefault();
   
     try {
-      const res = await fetch('http://localhost:3000/api/login', {
+      const res = await fetch('https://backend-chi-ten-88.vercel.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export default function Page() {
   
         // เปลี่ยนไปยังหน้า /login/user หลังจากล็อกอินสำเร็จ
         setTimeout(() => {
-          window.location.href = 'http://localhost:3001';
+          window.location.href = 'https://frontend2-hazel.vercel.app/';
         }, 1000); // รอ 1 วินาทีก่อนเปลี่ยนหน้า
       } else {
         setMessage(result.error);
