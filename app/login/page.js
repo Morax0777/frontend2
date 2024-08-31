@@ -28,7 +28,7 @@ export default function Page() {
       if (res.ok) {
         // บันทึก token และรายละเอียดผู้ใช้ใน localStorage
         localStorage.setItem('token', result.token);
-        localStorage.setItem('users', JSON.stringify({ username })); // บันทึกรายละเอียดผู้ใช้
+        localStorage.setItem('user', JSON.stringify({ username })); // บันทึกรายละเอียดผู้ใช้
         setMessage('Login successful!');
   
         // เปลี่ยนไปยังหน้า /login/user หลังจากล็อกอินสำเร็จ
